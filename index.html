@@ -95,20 +95,7 @@
               <tbody>
                 <tr>
                   <td>
-                    My research interest lies in reinforcement learning, computer vision, and robot learning.
-                    In particular, I focus on developing algorithms to train visual control agents by learning world
-                    models that understand how the world works.
-                    Relevant topics include
-                    (i) pre-training for reinforcement learning,
-                    (ii) self-supervised representation learning from images and videos for world model learning, and
-                    (iii) improving the dynamics generalization of world models.
-                  </td>
-                </tr>
-                <tr style="height: 10px;" />
-                <tr>
-                  <td>
-                    I am also broadly interested in diverse areas of reinforcement learning and imitation learning,
-                    such as exploration for RL, hierarchical RL, and preference-based RL.
+                    My research interest lies in reinforcement learning, representation learning, and robot learning.
                     Representative papers are <span style="background-color: #eef4f6">highlighted</span>.
                   </td>
                 </tr>
@@ -160,6 +147,44 @@
                     <p> We present RSP, a framework for visual representation learning from videos, that learns
                       representations that capture temporal information between frames by training a stochastic future
                       frame prediction model.</p>
+                  </td>
+                </tr>
+
+                <tr onmouseout="rnd_stop()" onmouseover="rnd_start()">
+                  <td style="padding:20px;width:25%;vertical-align:middle">
+                    <div class="one">
+                      <img src='images/rnd.png' width="160">
+                    </div>
+                    <script type="text/javascript">
+                      function rnd_start() {
+                        document.getElementById('rnd_image').style.opacity = "1";
+                      }
+
+                      function rsp_stop() {
+                        document.getElementById('rnd_image').style.opacity = "0";
+                      }
+                      rnd_stop()
+                    </script>
+                  </td>
+                  <td style="padding:20px;width:75%;vertical-align:middle">
+                    <a href="https://arxiv.org/abs/2405.18196">
+                      <papertitle>Render and Diffuse: Aligning Image and Action Spaces for Diffusion-based Behaviour
+                        Cloning
+                      </papertitle>
+                    </a>
+                    <br>
+                    <a href="https://huiwon-jang.github.io/">Huiwon Jang</a>,
+                    <strong>Younggyo Seo</strong>
+                    <a href="https://github.com/JafarAbdi">Jafar Uruç</a>,
+                    <a href="https://stepjam.github.io/">Stephen James</a>,
+                    <br>
+                    <em>Robotics: Science and Systems (<u>RSS</u>)</em>, 2024.
+                    <br>
+                    <a href="https://arxiv.org/abs/2405.18196">Paper</a>
+                    / <a href="https://vv19.github.io/render-and-diffuse/">website</a>
+                    <p> We introduce Render and Diffuse (R&D), a method that unifies low-level robot actions and RGB
+                      observations within the image space using virtual renders of
+                      the 3D model of the robot.</p>
                   </td>
                 </tr>
 

@@ -115,6 +115,48 @@
                   </td>
                 </tr>
 
+                <tr onmouseout="m3l_stop()" onmouseover="m3l_start()">
+                  <td style="padding:20px;width:25%;vertical-align:middle">
+                    <div class="one">
+                      <img src='images/m3l.png' width="160">
+                    </div>
+                    <script type="text/javascript">
+                      function m3l_start() {
+                        document.getElementById('m3l_image').style.opacity = "1";
+                      }
+
+                      function m3l_stop() {
+                        document.getElementById('m3l_image').style.opacity = "0";
+                      }
+                      m3l_stop()
+                    </script>
+                  </td>
+                  <td style="padding:20px;width:75%;vertical-align:middle">
+                    <a href="https://sferrazza.cc/m3l_site/">
+                      <papertitle>The Power of the Senses: Generalizable Manipulation from Vision and Touch through
+                        Masked Multimodal Learning
+                      </papertitle>
+                    </a>
+                    <br>
+                    <a href="https://sferrazza.cc/">Carmelo Sferrazza</a>,
+                    <strong>Younggyo Seo</strong>,
+                    <a href="https://www.haoliu.site/">Hao Liu</a>,
+                    <a href="https://youngwoon.github.io/">Youngwoon Lee</a>,
+                    <a href="http://people.eecs.berkeley.edu/~pabbeel/">Pieter Abbeel</a>
+                    <br>
+                    <em>IEEE/RSJ International Conference on Intelligent Robots and Systems (<u>IROS</u>)</em>, 2024.
+                    <br>
+                    <!-- <em>RSS Workshop on Interdisciplinary Exploration of Generalizable Manipulation Policy Learning:
+                      Paradigms and Debates</em>, 2023
+                    <br> -->
+                    <a href="https://arxiv.org/abs/2311.00924">Paper</a> / <a
+                      href="https://sferrazza.cc/m3l_site/">Website</a> / <a
+                      href="https://github.com/carlosferrazza/M3L">Code</a>
+                    <p>We propose Masked Multimodal Learning (M3L), which jointly learns a policy and visual-tactile
+                      representations based on masked autoencoding.</p>
+                  </td>
+                </tr>
+
                 <tr onmouseout="rsp_stop()" onmouseover="rsp_start()" bgcolor="#eef4f6">
                   <td style="padding:20px;width:25%;vertical-align:middle">
                     <div class="one">
@@ -350,44 +392,6 @@
                     <p>We introduce LAMP, a method for pretraining RL agents by using multimodal reward signal from
                       Video-Langauge models.
                     </p>
-                  </td>
-                </tr>
-
-                <tr onmouseout="m3l_stop()" onmouseover="m3l_start()">
-                  <td style="padding:20px;width:25%;vertical-align:middle">
-                    <div class="one">
-                      <img src='images/m3l.png' width="160">
-                    </div>
-                    <script type="text/javascript">
-                      function m3l_start() {
-                        document.getElementById('m3l_image').style.opacity = "1";
-                      }
-
-                      function m3l_stop() {
-                        document.getElementById('m3l_image').style.opacity = "0";
-                      }
-                      m3l_stop()
-                    </script>
-                  </td>
-                  <td style="padding:20px;width:75%;vertical-align:middle">
-                    <a href="https://younggyo.me">
-                      <papertitle>The Power of the Senses: Generalizable Manipulation from Vision and Touch through
-                        Masked Multimodal Learning
-                      </papertitle>
-                    </a>
-                    <br>
-                    <a href="https://sferrazza.cc/">Carmelo Sferrazza</a>,
-                    <strong>Younggyo Seo</strong>,
-                    <a href="https://www.haoliu.site/">Hao Liu</a>,
-                    <a href="https://youngwoon.github.io/">Youngwoon Lee</a>,
-                    <a href="http://people.eecs.berkeley.edu/~pabbeel/">Pieter Abbeel</a>
-                    <br>
-                    <em>RSS Workshop on Interdisciplinary Exploration of Generalizable Manipulation Policy Learning:
-                      Paradigms and Debates</em>, 2023
-                    <br>
-                    Paper will be ready soon
-                    <p>We introduce M3L, which learns joint representations of vision and touch with masked
-                      autoencoding .</p>
                   </td>
                 </tr>
 

@@ -115,6 +115,44 @@
                   </td>
                 </tr>
 
+                <tr onmouseout="cqn_stop()" onmouseover="cqn_start()">
+                  <td style="padding:20px;width:25%;vertical-align:middle">
+                    <div class="one">
+                      <img src='images/cqn.gif' width="160">
+                    </div>
+                    <script type="text/javascript">
+                      function cqn_start() {
+                        document.getElementById('cqn_image').style.opacity = "1";
+                      }
+
+                      function cqn_stop() {
+                        document.getElementById('cqn_image').style.opacity = "0";
+                      }
+                      m3l_stop()
+                    </script>
+                  </td>
+                  <td style="padding:20px;width:75%;vertical-align:middle">
+                    <a href="https://younggyo.me/cqn/">
+                      <papertitle>Continuous Control with Coarse-to-fine Reinforcement Learning
+                      </papertitle>
+                    </a>
+                    <br>
+                    <strong>Younggyo Seo</strong>,
+                    <a href="https://github.com/JafarAbdi">Jafar Uruç</a>,
+                    <a href="https://stepjam.github.io/">Stephen James</a>,
+                    <br>
+                    <em>Preprint</em>, 2024.
+                    <br>
+                    <a href="https://younggyo.me/cqn/static/paper/cqn_paper.pdf">Paper</a> / <a
+                      href="https://younggyo.me/cqn/">Website</a> / <a
+                      href="https://github.com/younggyoseo/CQN">Code</a>
+                    <p>We present Coarse-to-fine Reinforcement Learning (CRL), which trains RL agents to zoom-into
+                      continuous action space in a coarse-to-fine manner. Within this new framework, we present
+                      Coarse-to-fine Q-Network (CQN), a
+                      value-based RL algorithm for continuous control.</p>
+                  </td>
+                </tr>
+
                 <tr onmouseout="m3l_stop()" onmouseover="m3l_start()">
                   <td style="padding:20px;width:25%;vertical-align:middle">
                     <div class="one">

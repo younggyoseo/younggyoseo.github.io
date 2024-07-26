@@ -28,6 +28,67 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+  <style>
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      border: 0px;
+      border-spacing: 0px;
+      border-collapse: separate;
+      margin-right: auto;
+      margin-left: auto;
+      align-items: center;
+      /* Center-aligns items vertically in desktop mode */
+    }
+
+    .text-content {
+      padding: 2.5%;
+      width: 63%;
+      vertical-align: middle;
+      order: 1;
+    }
+
+    .image-content {
+      padding: 2.5%;
+      width: 37%;
+      max-width: 37%;
+      order: 2;
+      display: flex;
+      justify-content: center;
+      /* Center-aligns image horizontally */
+    }
+
+    .image-content img {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    @media screen and (max-width: 768px) {
+
+      .text-content,
+      .image-content {
+        width: 100%;
+        max-width: 100%;
+        order: 1;
+      }
+
+      .image-content {
+        order: 2;
+        display: flex;
+        justify-content: center;
+        /* Center-aligns image horizontally in mobile mode */
+      }
+
+      .image-content img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: 300px;
+        /* Adjust this value as needed */
+      }
+    }
+  </style>
 </head>
 
 <body class="bg_colour">
@@ -36,7 +97,40 @@
     <tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
-          <table
+          <div class="container">
+            <div class="text-content">
+              <p style="text-align:left">
+                <name>Younggyo Seo</name>
+              </p>
+              <p>Hi! My name is Younggyo, and I was a Research Scientist at <a
+                  href="https://careers.dyson.com/en-gb/what-you-can-do/engineer/robotics/">Dyson Robot Learning Lab</a>
+                in London, UK. Currently, I am spending most of my time working on some interesting research projects.
+              </p>
+              <p>My research interest lies in reinforcement learning and representation learning, with the goal of
+                designing algorithms to enable intelligent agents to acquire visuomotor skills with a minimal amount of
+                data. To this end, my research has focused on designing (i) sample-efficient reinforcement learning
+                algorithms and (ii) visual representation learning methods that learn to extract useful features by
+                training generative models.</p>
+              <p>I received my PhD from KAIST, where I was advised by <a
+                  href="https://alinlab.kaist.ac.kr/shin.html">Jinwoo Shin</a> and my B.A. in Economics from Seoul
+                National University. During my PhD, I was a visiting scholar at UC Berkeley working with <a
+                  href="http://people.eecs.berkeley.edu/~pabbeel/">Pieter Abbeel</a> and <a
+                  href="https://sites.google.com/view/kiminlee">Kimin Lee</a>, collaborated with <a
+                  href="https://web.eecs.umich.edu/~honglak/">Honglak Lee</a> at University of Michigan, and interned at
+                Microsoft Research Asia.</p>
+              <p>Feel free to send me an e-mail if you want to have a chat!<br><b>Contact</b>: mail AT younggyo.me</p>
+              <p style="text-align:center">
+                <a href="https://scholar.google.com/citations?user=tI1-YwIAAAAJ&hl=en">Google Scholar</a>&nbsp/&nbsp
+                <a href="https://twitter.com/younggyoseo">Twitter</a>&nbsp/&nbsp
+                <a href="https://github.com/younggyoseo">Github</a>
+              </p>
+            </div>
+            <div class="image-content">
+              <a href="images/younggyo.PNG"><img alt="profile photo" src="images/younggyo.PNG"
+                  class="hoverZoomLink"></a>
+            </div>
+          </div>
+          <!-- <table
             style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
             <tbody>
               <tr style="padding:0px">
@@ -79,7 +173,7 @@
                 </td>
               </tr>
             </tbody>
-          </table>
+          </table> -->
           <hr class="soft">
 
           <button style="border:0px transparent; background-color: transparent;outline:none;" type="button"

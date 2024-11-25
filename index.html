@@ -168,6 +168,45 @@
                   </td>
                 </tr>
 
+                <tr onmouseout="coordtok_stop()" onmouseover="coordtok_start()" bgcolor="#fbf4f3">
+                  <td style="padding:20px;width:25%;vertical-align:middle">
+                    <div class="one">
+                      <img src='images/coordtok.png' width="160">
+                    </div>
+                    <script type="text/javascript">
+                      function coordtok_start() {
+                        document.getElementById('coordtok_image').style.opacity = "1";
+                      }
+
+                      function coordtok_stop() {
+                        document.getElementById('coordtok_image').style.opacity = "0";
+                      }
+                      coordtok_stop()
+                    </script>
+                  </td>
+                  <td style="padding:20px;width:75%;vertical-align:middle">
+                    <a href="https://huiwon-jang.github.io/coordtok/">
+                      <papertitle>Efficient Long Video Tokenization via Coordinated-based Patch Reconstrution
+                      </papertitle>
+                    </a>
+                    <br>
+                    <a href="https://huiwon-jang.github.io/">Huiwon Jang</a>,
+                    <a href="https://sihyun.me/">Sihyun Yu</a>,
+                    <a href="http://alinlab.kaist.ac.kr/shin.html">Jinwoo Shin</a>,
+                    <a href="http://people.eecs.berkeley.edu/~pabbeel/">Pieter Abbeel</a>,
+                    <strong>Younggyo Seo</strong>
+                    <br>
+                    <em>Preprint, 2024</em>.
+                    <br>
+                    <a href="https://arxiv.org/abs/2411.14762">Paper</a> / <a
+                      href="https://huiwon-jang.github.io/coordtok/">Website</a>
+                    / <a href="https://github.com/huiwon-jang/CoordTok">Code</a>
+                    <p>We introduce CoordTok, a scalable video tokenizer that learns a mapping from coordinate-based
+                      representations to the corresponding patches of input videos.
+                    </p>
+                  </td>
+                </tr>
+
                 <tr onmouseout="cqn_as_stop()" onmouseover="cqn_as_start()" bgcolor="#eef4f6">
                   <td style="padding:20px;width:25%;vertical-align:middle">
                     <div class="one">
@@ -197,14 +236,13 @@
                       and
                       Beyond</em>, 2024.
                     <br>
-                    <a href="https://younggyo.me/cqn-as/static/paper/cqn_as_paper.pdf">Paper</a> / <a
+                    <a href="https://arxiv.org/abs/2411.12155">Paper</a> / <a
                       href="https://younggyo.me/cqn-as/">Website</a>
                     / <a href="https://github.com/younggyoseo/CQN-AS">Code</a>
                     <p>We present Coarse-to-fine Q-Network with Action Sequence (CQN-<b>AS</b>), a value-based RL
                       algorithm that trains a critic network to output Q-values over <em>a sequence of actions</em>.</p>
                   </td>
                 </tr>
-
 
                 <tr onmouseout="cqn_stop()" onmouseover="cqn_start()" bgcolor="#eef4f6">
                   <td style="padding:20px;width:25%;vertical-align:middle">

@@ -31,7 +31,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Reinforcement Learning with Action Sequence for Data-Efficient
+            <h1 class="title is-1 publication-title">Coarse-to-fine Q-Network with Action Sequence for Data-Efficient
               Robot Learning
             </h1>
 
@@ -100,25 +100,18 @@
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
               <p>
-                Training reinforcement learning (RL) agents on robotic tasks typically requires a large number of
-                training samples.
-                This is because training data often consists of noisy trajectories, whether from exploration or
-                human-collected demonstrations, making it difficult to learn value functions that understand the effect
-                of taking each action.
-                On the other hand,
-                recent behavior-cloning (BC) approaches have shown that predicting a sequence of actions
-                enables policies to effectively approximate noisy, multi-modal distributions of expert demonstrations.
-                Can we use a similar idea for improving RL on robotic tasks?
-                In this paper, we introduce a novel RL algorithm that learns a critic network that outputs
-                Q-values over a sequence of actions.
-                By explicitly training the value functions to learn the consequence of executing a series of current and
-                future actions,
-                our algorithm allows for learning useful value functions from noisy trajectories.
-                We study our algorithm across various setups with sparse and dense rewards, and with or without
-                demonstrations, spanning mobile bi-manual manipulation, whole-body control, and tabletop manipulation
-                tasks from BiGym, HumanoidBench, and RLBench.
-                We find that, by learning the critic network with action sequences, our algorithm outperforms various RL
-                and BC baselines, in particular on challenging humanoid control tasks.
+                In reinforcement learning (RL), we train a value function to understand the long-term consequence of
+                executing a single action. However, the value of taking each action can be ambiguous in robotics as
+                robot movements are typically the aggregate result of executing multiple small actions. Moreover,
+                robotic training data often consists of noisy trajectories, in which each action is noisy but executing
+                a series of actions results in a meaningful robot movement. This further makes it difficult for the
+                value function to understand the effect of individual actions. To address this, we introduce
+                Coarse-to-fine Q-Network with Action Sequence (CQN-AS), a novel value-based RL algorithm that learns a
+                critic network that outputs Q-values over a sequence of actions, i.e., explicitly training the value
+                function to learn the consequence of executing action sequences. We study our algorithm on 53 robotic
+                tasks with sparse and dense rewards, as well as with and without demonstrations, from BiGym,
+                HumanoidBench, and RLBench. We find that CQN-AS outperforms various baselines, in particular on humanoid
+                control tasks.
               </p><br>
             </div>
           </div>
@@ -129,27 +122,51 @@
     <section class="section">
       <div class="container is-max-desktop">
 
+        <!-- Motivation. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h3 class="title is-4">Motivation: Noisy Robotic Trajectories</h3>
+            <div class="content has-text-justified">
+              <img src="./static/images/noisy_trajectories.png" class="interpolation-image" />
+              <p>
+                Robotic training data often consists of noisy trajectories, making it difficult to train value functions
+                to understand the future consequence of taking each action. As a concrete example,
+                we visualize the (x, y, z) coordinates of a gripper in demonstrations from <a
+                  href="https://github.com/stepjam/RLBench">RLBench</a> that uses motion-planning for generating
+                demonstrations and <a href="https://chernyadev.github.io/bigym/">BiGym</a> that provides human-collected
+                demonstrations. One may think that this issue can be resolved by smoothing actions, but it often makes
+                demonstrations be invalid by reducing action precision. For instance, in the right-most figure,
+                we report the success rates of replaying BiGym demonstrations with various action
+                smoothing schemes. We find that naive approach of smoothing
+                actions can make demonstrations be invalid as smoothed actions
+                often lose precision, highlighting the need for developing RL algorithms that can learn from noisy
+                robotic training data.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Method. -->
+
         <!-- Method. -->
         <div class="columns is-centered">
           <div class="column is-full-width">
             <h3 class="title is-4">Method Overview: Coarse-to-fine Q-Network with Action Sequence</h3>
             <div class="content has-text-justified">
+              <img src="./static/images/overview.png" class="interpolation-image" />
               <p>
-                We introduce Coarse-to-fine Q-Network with Action Sequence (CQN-<b>AS</b>), a value-based RL algorithm
-                that learns a <b>critic network that outputs Q-values over a sequence
-                  of
-                  actions</b>.
-                By explicitly learning Q-values of both current and future actions from the given state, our approach
-                aims to mitigate the challenge of learning Q-values with noisy trajectories from exploratory behaviors
-                or human-collected demonstrations.
+                We build our algorithm upon Coarse-to-fine Q-Network (<a href="https://younggyo.me/cqn/">CQN</a>), a
+                recent critic-only RL algorithm that solves continuous control tasks with discrete actions.
+                (a) In CQN framework, we train RL agents to <em>zoom-into</em> the continuous action space by iterating
+                the procedures of (i) discretizing the continuous action space into <i>B</i> bins and (ii) finding the
+                bin with the highest Q-value to further discretize at the next level. We then use the last level's
+                action sequence for controlling robots.
+                CQN-<strong>AS</strong> extends this idea to action sequences by computing actions for all sequence
+                steps <i>k &in; [1, ..., K]</i> in parallel.
+                (b) We train a critic network to output Q-values over <em>a sequence of actions.</em>
                 We design our architecture to first obtain features for each sequence step and aggregate features from
                 multiple sequence steps with a recurrent network.
-                We then project these outputs into Q-values at level l.
-                For action inference, we repeat the procedure of computing Q-values for level l = 1, 2, ..., L.
-                We then find the action sequence with the highest Q-values from the last level L, and use it for
-                controlling robots at each time step.
+                We then project these outputs into Q-values.
               </p>
-              <img src="./static/images/overview.png" class="interpolation-image" />
             </div>
           </div>
         </div>

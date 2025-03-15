@@ -136,3 +136,24 @@ name {
 span.highlight {
   background-color: #ffffd0;
 }
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  border: 0px;
+  border-spacing: 0px;
+  border-collapse: separate;
+  margin-right: auto;
+  margin-left: auto;
+  align-items: center;
+}
+
+table tbody tr td td hr.soft {
+  border: 0;
+  height: 1px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 100%;
+  background-color: #dfdfdf
+}

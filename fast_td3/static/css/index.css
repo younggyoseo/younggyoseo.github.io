@@ -159,3 +159,24 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+.fa.fa-twitter {
+  font-family: sans-serif;
+}
+
+.fa.fa-twitter::before {
+  content: "𝕏";
+  font-size: 1.2em;
+}
+
+.x-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4em;
+  height: 1.4em;
+  font-family: sans-serif;
+  font-size: 1.2em;
+  margin-right: -0.2em;
+  vertical-align: middle;
+}

@@ -3,10 +3,11 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Reinforcement Learning with Action Sequence for Data-Efficient Robot Learning.">
-  <meta name="keywords" content="CQN">
+  <meta name="description" content="Coarse-to-fine Q-Network with Action Sequence for Data-Efficient Robot Learning.">
+  <meta name="keywords" content="CQN-AS">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Reinforcement Learning with Action Sequence for Data-Efficient Robot Learning</title>
+  <title>Coarse-to-fine Q-Network with Action Sequence for Data-Efficient
+    Robot Learning</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
@@ -100,18 +101,16 @@
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
               <p>
-                In reinforcement learning (RL), we train a value function to understand the long-term consequence of
-                executing a single action. However, the value of taking each action can be ambiguous in robotics as
-                robot movements are typically the aggregate result of executing multiple small actions. Moreover,
-                robotic training data often consists of noisy trajectories, in which each action is noisy but executing
-                a series of actions results in a meaningful robot movement. This further makes it difficult for the
-                value function to understand the effect of individual actions. To address this, we introduce
-                Coarse-to-fine Q-Network with Action Sequence (CQN-AS), a novel value-based RL algorithm that learns a
-                critic network that outputs Q-values over a sequence of actions, i.e., explicitly training the value
-                function to learn the consequence of executing action sequences. We study our algorithm on 53 robotic
-                tasks with sparse and dense rewards, as well as with and without demonstrations, from BiGym,
-                HumanoidBench, and RLBench. We find that CQN-AS outperforms various baselines, in particular on humanoid
-                control tasks.
+                Predicting a sequence of actions has been crucial in the success of recent behavior
+                cloning algorithms in robotics. Can similar ideas improve reinforcement learning
+                (RL)? We answer affirmatively by observing that incorporating action sequences
+                when predicting ground-truth return-to-go leads to lower validation loss. Motivated
+                by this, we introduce Coarse-to-fine Q-Network with Action Sequence (CQN-<b>AS</b>),
+                a novel value-based RL algorithm that learns a critic network that outputs Q-values
+                over a sequence of actions, i.e., explicitly training the value function to learn the
+                consequence of executing action sequences. Our experiments show that CQN-<b>AS</b>
+                outperforms several baselines on a variety of sparse-reward humanoid control and
+                tabletop manipulation tasks from BiGym and RLBench.
               </p><br>
             </div>
           </div>
@@ -125,22 +124,38 @@
         <!-- Motivation. -->
         <div class="columns is-centered">
           <div class="column is-full-width">
-            <h3 class="title is-4">Motivation: Noisy Robotic Trajectories</h3>
+            <h3 class="title is-4">Value Learning with Action Sequences</h3>
             <div class="content has-text-justified">
-              <img src="./static/images/noisy_trajectories.png" class="interpolation-image" />
+              <img src="./static/images/analysis.png" class="interpolation-image" />
               <p>
-                Robotic training data often consists of noisy trajectories, making it difficult to train value functions
-                to understand the future consequence of taking each action. As a concrete example,
-                we visualize the (x, y, z) coordinates of a gripper in demonstrations from <a
-                  href="https://github.com/stepjam/RLBench">RLBench</a> that uses motion-planning for generating
-                demonstrations and <a href="https://chernyadev.github.io/bigym/">BiGym</a> that provides human-collected
-                demonstrations. One may think that this issue can be resolved by smoothing actions, but it often makes
-                demonstrations be invalid by reducing action precision. For instance, in the right-most figure,
-                we report the success rates of replaying BiGym demonstrations with various action
-                smoothing schemes. We find that naive approach of smoothing
-                actions can make demonstrations be invalid as smoothed actions
-                often lose precision, highlighting the need for developing RL algorithms that can learn from noisy
-                robotic training data.
+                Recent behavior cloning algorithms in robotics like <a href="https://tonyzhaozh.github.io/aloha/">Action
+                  Chunking Transformer (ACT)</a> and <a href="https://diffusion-policy.cs.columbia.edu/">Diffusion
+                  Policy</a>
+                predict a sequence of actions. Can we
+                use the similar idea for improving RL?
+                Our hypothesis is that using action sequences can help value learning because action sequences, which
+                can correspond to behavioral primitives such as going straight, make it easier for the model to learn
+                the
+                long-term outcomes compared to evaluating the effect of individual single-step actions.
+              <ul>
+                <li>
+                  (a) To investigate this hypothesis, we train a return-to-go prediction model with different action
+                  sequence lengths. We find that using action sequence of length
+                  50 results in the lower validation loss than using single-step action.
+                </li>
+                <li>
+                  (b) Inspired by this, we train actor-critic algorithms with action sequences. However, we find that
+                  SAC and TD3 with
+                  action
+                  sequences suffer from severe value overestimation in stand task from <a
+                    href="https://humanoid-bench.github.io/">HumanoidBench</a> (Sferrazza et al., 2024).
+                </li>
+                <li>
+                  (c) This leads to unstable training and failure to solve the task. These findings motivate us to
+                  design CQN-<b>AS</b>, a novel RL algorithm that incorporates action sequences for value learning while
+                  avoiding the value overestimation problem.
+                </li>
+              </ul>
               </p>
             </div>
           </div>
@@ -177,30 +192,20 @@
           <div class="column is-full-width">
             <h2 class="title is-3">Experiments</h2>
 
-            <!-- Setup: Tasks. -->
-            <h3 class="title is-4">Experimental Setup: Tasks</h3>
-            <img src="./static/images/tasks.png" class="interpolation-image" />
-            <div class="content has-text-justified">
-              <p>
-                We study CQN-<b>AS</b> on 53 robotic tasks across various setups with sparse and dense rewards, and with
-                or without demonstrations, spanning mobile bi-manual manipulation, whole-body control, and tabletop
-                manipulation tasks from <a href="https://chernyadev.github.io/bigym/">BiGym</a>, <a
-                  href="https://humanoid-bench.github.io/">HumanoidBench</a>, and <a
-                  href="https://github.com/stepjam/RLBench">RLBench</a>.
-              </p>
-            </div>
-
             <!-- Results. -->
             <h3 class="title is-4">Experimental Results: Overview</h3>
             <img src="./static/images/aggregate.png" class="interpolation-image" />
             <div class="content has-text-justified">
               <p>
+                We study CQN-<b>AS</b> on 45 robotic tasks from <a href="https://chernyadev.github.io/bigym/">BiGym</a>
+                and <a href="https://github.com/stepjam/RLBench">RLBench</a> on demo-driven RL setup.
                 CQN-<b>AS</b> achieves consistently outperforms various RL and BC baselines such as <a
                   href="https://younggyo.me/cqn/">CQN</a>,
                 DrQ-v2+ (which is highly-optimized
-                variant of <a href="https://arxiv.org/abs/2107.09645">DrQ-v2</a>), <a
-                  href="https://arxiv.org/abs/1801.01290">SAC</a>, and <a
+                variant of <a href="https://arxiv.org/abs/2107.09645">DrQ-v2</a>), and <a
                   href="https://tonyzhaozh.github.io/aloha/">Action Chunking Transformer (ACT)</a>.
+                In particular, CQN-<b>AS</b> significantly outperforms other demo-driven RL baselines on humanoid
+                control tasks, where the value learning is more challenging.
               </p>
             </div>
           </div>

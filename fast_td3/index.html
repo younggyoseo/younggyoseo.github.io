@@ -428,9 +428,10 @@
                 returns are the same for both policies.
                 This observation suggests that typical metric the research community uses -- episode return -- may not
                 fully reflect the usefulness of each RL algorithm.
-                Therefore, we would like to strongly discourage users from using Playground or IsaacLab as
-                <i>benchmark</i> for comparing different class of RL algorithms, because every RL algorithm
-                may need different reward functions in particular for tasks with heavily hand-tuned rewards.
+                Therefore, we encourage users to reconsider the use of robotic simulation as a <i>benchmark</i> for
+                comparing different classes of RL algorithms without evaluating the quality of the learned gaits, since
+                each RL algorithm may require different reward functions, especially for tasks with heavily hand-tuned
+                rewards.
               </p>
             </div>
           </div>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQNMP9HZQG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-FQNMP9HZQG');
+  </script>
+  <meta charset="utf-8">
+  <meta name="description" content="Coarse-to-fine Q-Network with Action Sequence for Data-Efficient Robot Learning.">
+  <meta name="keywords" content="CQN-AS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coarse-to-fine Q-Network with Action Sequence for Data-Efficient
+    Robot Learning</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Coarse-to-fine Q-Network with Action Sequence for Data-Efficient
+              Robot Learning
+            </h1>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a target="_blank" href="https://younggyo.me/">Younggyo Seo</a> & </span>
+              <span class="author-block">
+                <a target="_blank" href="https://people.eecs.berkeley.edu/~pabbeel/">Pieter Abbeel</a></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">UC Berkeley</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="./static/paper/cqn_as_paper.pdf"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <!-- Arxiv Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://arxiv.org/abs/2411.12155"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file"></i>
+                    </span>
+                    <span>ArXiv</span>
+                  </a>
+                </span>
+
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/younggyoseo/CQN-AS"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <section class="hero is-light">
+      <br>
+      <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column" style="padding: 0 20px;">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Predicting a sequence of actions has been crucial in the success of recent behavior
+                cloning algorithms in robotics. Can similar ideas improve reinforcement learning
+                (RL)? We answer affirmatively by observing that incorporating action sequences
+                when predicting ground-truth return-to-go leads to lower validation loss. Motivated
+                by this, we introduce Coarse-to-fine Q-Network with Action Sequence (CQN-<b>AS</b>),
+                a novel value-based RL algorithm that learns a critic network that outputs Q-values
+                over a sequence of actions, i.e., explicitly training the value function to learn the
+                consequence of executing action sequences. Our experiments show that CQN-<b>AS</b>
+                outperforms several baselines on a variety of sparse-reward humanoid control and
+                tabletop manipulation tasks from BiGym and RLBench.
+              </p><br>
+            </div>
+          </div>
+        </div>
+    </section>
+    <!--/ Abstract. -->
+
+    <section class="section">
+      <div class="container is-max-desktop">
+
+        <!-- Motivation. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h3 class="title is-4">Value Learning with Action Sequences</h3>
+            <div class="content has-text-justified">
+              <img src="./static/images/analysis.png" class="interpolation-image" />
+              <p>
+                Recent behavior cloning algorithms in robotics like <a href="https://tonyzhaozh.github.io/aloha/">Action
+                  Chunking Transformer (ACT)</a> and <a href="https://diffusion-policy.cs.columbia.edu/">Diffusion
+                  Policy</a>
+                predict a sequence of actions. Can we
+                use the similar idea for improving RL?
+                Our hypothesis is that using action sequences can help value learning because action sequences, which
+                can correspond to behavioral primitives such as going straight, make it easier for the model to learn
+                the
+                long-term outcomes compared to evaluating the effect of individual single-step actions.
+              <ul>
+                <li>
+                  (a) To investigate this hypothesis, we train a return-to-go prediction model with different action
+                  sequence lengths. We find that using action sequence of length
+                  50 results in the lower validation loss than using single-step action.
+                </li>
+                <li>
+                  (b) Inspired by this, we train actor-critic algorithms with action sequences. However, we find that
+                  SAC and TD3 with
+                  action
+                  sequences suffer from severe value overestimation in stand task from <a
+                    href="https://humanoid-bench.github.io/">HumanoidBench</a> (Sferrazza et al., 2024).
+                </li>
+                <li>
+                  (c) This leads to unstable training and failure to solve the task. These findings motivate us to
+                  design CQN-<b>AS</b>, a novel RL algorithm that incorporates action sequences for value learning while
+                  avoiding the value overestimation problem.
+                </li>
+              </ul>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Method. -->
+
+        <!-- Method. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h3 class="title is-4">Method Overview: Coarse-to-fine Q-Network with Action Sequence</h3>
+            <div class="content has-text-justified">
+              <img src="./static/images/overview.png" class="interpolation-image" />
+              <p>
+                We build our algorithm upon Coarse-to-fine Q-Network (<a href="https://younggyo.me/cqn/">CQN</a>), a
+                recent critic-only RL algorithm that solves continuous control tasks with discrete actions.
+                (a) In CQN framework, we train RL agents to <em>zoom-into</em> the continuous action space by iterating
+                the procedures of (i) discretizing the continuous action space into <i>B</i> bins and (ii) finding the
+                bin with the highest Q-value to further discretize at the next level. We then use the last level's
+                action sequence for controlling robots.
+                CQN-<strong>AS</strong> extends this idea to action sequences by computing actions for all sequence
+                steps <i>k &in; [1, ..., K]</i> in parallel.
+                (b) We train a critic network to output Q-values over <em>a sequence of actions.</em>
+                We design our architecture to first obtain features for each sequence step and aggregate features from
+                multiple sequence steps with a recurrent network.
+                We then project these outputs into Q-values.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Method. -->
+
+        <!-- Results. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h2 class="title is-3">Experiments</h2>
+
+            <!-- Results. -->
+            <h3 class="title is-4">Experimental Results: Overview</h3>
+            <img src="./static/images/aggregate.png" class="interpolation-image" />
+            <div class="content has-text-justified">
+              <p>
+                We study CQN-<b>AS</b> on 45 robotic tasks from <a href="https://chernyadev.github.io/bigym/">BiGym</a>
+                and <a href="https://github.com/stepjam/RLBench">RLBench</a> on demo-driven RL setup.
+                CQN-<b>AS</b> achieves consistently outperforms various RL and BC baselines such as <a
+                  href="https://younggyo.me/cqn/">CQN</a>,
+                DrQ-v2+ (which is highly-optimized
+                variant of <a href="https://arxiv.org/abs/2107.09645">DrQ-v2</a>), and <a
+                  href="https://tonyzhaozh.github.io/aloha/">Action Chunking Transformer (ACT)</a>.
+                In particular, CQN-<b>AS</b> significantly outperforms other demo-driven RL baselines on humanoid
+                control tasks, where the value learning is more challenging.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Results. -->
+
+      </div>
+      </div>
+      <!--/ Results. -->
+
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column">
+            <div class="content has-text-centered">
+              <p>
+                Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> made
+                by
+                the amazing <a href="https://keunhong.com/">Keunhong Park</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQNMP9HZQG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-FQNMP9HZQG');
+  </script>
+  <meta charset="utf-8">
+  <meta name="description" content="FastTD3: Simple, Fast, and Capable Reinforcement Learning for Humanoid Control.">
+  <meta name="keywords" content="FastTD3">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FastTD3: Simple, Fast, and Capable Reinforcement Learning for Humanoid Control</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body" style="padding-bottom: 1rem;">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title"><b style="color: rgb(1, 132, 234);">FastTD3</b>: <span
+                class="subtitle-text">Simple, Fast, and Capable
+                Reinforcement Learning for
+                Humanoid Control</span>
+            </h1>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a target="_blank" href="https://younggyo.me/">Younggyo Seo</a>,
+              </span>
+              <span class="author-block">
+                <a target="_blank" href="https://sferrazza.cc/">Carmelo Sferrazza</a>,
+              </span>
+              <span class="author-block">
+                <a target="_blank" href="https://geng-haoran.github.io/">Haoran Geng</a>,
+              </span>
+              <span class="author-block">
+                <a target="_blank" href="https://scholar.google.com/citations?user=GnEVRtQAAAAJ&hl=en">Michal
+                  Nauman</a>,
+              </span>
+              <span class="author-block">
+                <a target="_blank" href="https://zhaohengyin.github.io/">Zhao-Heng Yin</a>,
+              </span>
+              <span class="author-block">
+                <a target="_blank" href="https://people.eecs.berkeley.edu/~pabbeel/">Pieter Abbeel</a>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">UC Berkeley</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="./static/paper/fast_td3_paper.pdf"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <!-- Arxiv Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://arxiv.org/abs/2505.22642"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file"></i>
+                    </span>
+                    <span>ArXiv</span>
+                  </a>
+                </span>
+
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/younggyoseo/FastTD3"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- X Post Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://x.com/younggyoseo/status/1928127711308042474"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <span class="x-icon" aria-label="X">𝕏</span>
+                    </span>
+                    <span>Posts</span>
+                  </a>
+                </span>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/sim2real/humanoid_teaser.mp4" type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          <b style="color: rgb(1, 132, 234);">FastTD3</b> is a simple, fast, and capable off-policy RL algorithm for
+          humanoid control.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 1rem;">
+    <section class="hero is-light">
+      <br>
+      <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column" style="padding: 0 20px;">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Reinforcement learning (RL) has driven significant progress in robotics, but its complexity and long
+                training times remain major bottlenecks. In this report, we introduce <b
+                  style="color: rgb(1, 132, 234);">FastTD3</b>, a simple, fast,
+                and capable RL algorithm that significantly speeds up training for humanoid robots in popular benchmarks
+                such as HumanoidBench, IsaacLab, and MuJoCo Playground.
+              </p>
+              <p>
+                Our recipe is remarkably simple: by training a
+                standard off-policy TD3 agent with parallel simulation, large-batch updates, and carefully tuned
+                hyperparameters, <b style="color: rgb(1, 132, 234);">FastTD3</b> solves a range of HumanoidBench
+                tasks
+                in under 3 hours on a single GPU. We also
+                provide a lightweight and easy-to-use implementation of <span
+                  style="color: rgb(1, 132, 234);"></span>FastTD3</span>
+                to
+                accelerate RL research in robotics.
+              </p><br>
+            </div>
+          </div>
+        </div>
+    </section>
+    <!--/ Abstract. -->
+
+    <section class="section">
+      <div class="container is-max-desktop">
+
+        <!-- Motivation. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h3 class="title is-4">FastTD3: Simple, Fast, and Capable RL for Humanoid Control</h3>
+            <div class="content has-text-justified">
+              <p>
+                <b style="color: rgb(1, 132, 234);">FastTD3</b> is a high-performance variant of the Twin Delayed
+                Deep Deterministic Policy Gradient (<a href="https://arxiv.org/abs/1802.09477">TD3</a>) algorithm,
+                optimized for complex robotics tasks.
+                These
+                optimizations
+                are based on the observations of Parallel Q-Learning (<a
+                  href="https://arxiv.org/abs/2307.12983">PQL</a>)
+                that found parallel simulation, large batch
+                sizes, and distributional critic are important for scaling up off-policy RL algorithms.
+              </p>
+              <div class="columns is-centered">
+                <div class="column">
+                  <img src="./static/images/aggregate_humanoidbench.png" class="interpolation-image" />
+                </div>
+                <div class="column">
+                  <img src="./static/images/aggregate_isaaclab.png" class="interpolation-image" />
+                </div>
+                <div class="column">
+                  <img src="./static/images/aggregate_playground.png" class="interpolation-image" />
+                </div>
+              </div>
+              <p>Please check our <a href="./static/paper/fast_td3_paper.pdf">technical report</a> for various
+                design
+                choices we have made and their effects!</p>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- Motivation. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h3 class="title is-4">Results: MuJoCo Playground</h3>
+            <div class="content has-text-justified">
+              <p>
+                <b style="color: rgb(1, 132, 234);">FastTD3</b> solves a range of tasks in <a
+                  href="https://playground.mujoco.org/">MuJoCo Playground</a>,
+                achieving similar or faster wall-clock times than PPO.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-body carousel-section">
+          <div class="container">
+            <div id="results-carousel" class="carousel results-carousel">
+              <div class="item item-steve">
+                <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/T1JoystickFlatTerrain.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-chair-tp">
+                <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/LeapCubeReorient.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-shiba">
+                <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/Go1JoystickFlatTerrain.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-fullbody">
+                <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/G1JoystickFlatTerrain.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-blueshirt">
+                <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/LeapCubeRotateZAxis.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-coffee">
+                <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/G1JoystickRoughTerrain.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-mask">
+                <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/T1RoughFlatTerrain.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h3 class="title is-4">Results: HumanoidBench</h3>
+            <div class="content has-text-justified">
+              <p>
+                <b style="color: rgb(1, 132, 234);">FastTD3</b> solves various tasks in <a
+                  href="https://humanoid-bench.github.io/">HumanoidBench</a> in
+                under 3 hours on a single GPU, where
+                prior algorithms struggle even after tens of hours of training.
+                However, one can see that behaviors are very unnatural due to the limitation of the reward design.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-body carousel-section">
+          <div class="container">
+            <div id="results-carousel" class="carousel results-carousel">
+              <div class="item item-steve">
+                <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/h1hand-balance_hard_4by3.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-chair-tp">
+                <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/h1hand-basketball_4by3.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-shiba">
+                <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/h1hand-hurdle_4by3.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-fullbody">
+                <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/h1hand-pole_4by3.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-blueshirt">
+                <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/h1hand-sit_simple_4by3.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-coffee">
+                <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/h1hand-slide_4by3.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-mask">
+                <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/h1hand-window_4by3.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- Sim2Real Transfer. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h3 class="title is-4">Sim-to-real Transfer with FastTD3</h3>
+            <div class="content has-text-justified">
+              <p>
+                We also show that <b style="color: rgb(1, 132, 234);">FastTD3</b> can be used for sim-to-real transfer.
+                We used amazingly fast and convenient <a href="https://playground.mujoco.org/">MuJoCo Playground</a> to
+                train a Booster T1 policy in simulation and
+                transferred it to a real Booster T1 robot using <a
+                  href="https://github.com/BoosterRobotics/booster_gym">Booster
+                  Gym</a>.
+              </p>
+              <div class="columns is-centered">
+                <div class="column" style="display: flex; flex-direction: column; align-items: center;">
+                  <div style="display: flex; justify-content: center; align-items: center;">
+                    <video poster="" autoplay controls muted loop playsinline
+                      style="height: 300px; max-width: 533px; object-fit: contain;">
+                      <source src="./static/videos/sim2real/forward_mujoco_left.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="has-text-centered" style="margin-top: 5px;"> Simulation Rollout</p>
+                </div>
+                <div class=" column" style="display: flex; flex-direction: column; align-items: center;">
+                  <div style="display: flex; justify-content: center; align-items: center;">
+                    <video poster="" autoplay controls muted loop playsinline
+                      style="height: 300px; max-width: 533px; object-fit: contain;">
+                      <source src="./static/videos/sim2real/forward_real_left.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="has-text-centered" style="margin-top: 5px;">Real Robot Rollout with <b
+                      style="color: rgb(1, 132, 234);">FastTD3</b>
+                  </p>
+                </div>
+              </div>
+              <div class="columns is-centered">
+                <div class="column" style="display: flex; flex-direction: column; align-items: center;">
+                  <div style="display: flex; justify-content: center; align-items: center;">
+                    <video poster="" autoplay controls muted loop playsinline
+                      style="height: 300px; max-width: 533px; object-fit: contain;">
+                      <source src="./static/videos/sim2real/backward_mujoco_left.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="has-text-centered" style="margin-top: 5px;"> Simulation Rollout</p>
+                </div>
+                <div class=" column" style="display: flex; flex-direction: column; align-items: center;">
+                  <div style="display: flex; justify-content: center; align-items: center;">
+                    <video poster="" autoplay controls muted loop playsinline
+                      style="height: 300px; max-width: 533px; object-fit: contain;">
+                      <source src="./static/videos/sim2real/backward_real_left.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="has-text-centered" style="margin-top: 5px;">Real Robot Rollout with <b
+                      style="color: rgb(1, 132, 234);">FastTD3</b>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- Motivation. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h3 class="title is-4">Different RL algorithms may need different reward functions</h3>
+            <div class="content has-text-justified">
+              <p>
+                In MuJoCo Playground, we made an interesting observation where <b
+                  style="color: rgb(1, 132, 234);">FastTD3</b> train policies with a notably
+                different gait than <b>PPO</b> even though we use the same reward function for both algorithms.
+                We hypothesize that this is because existing reward functions are typically tuned for <b>PPO</b>,
+                therefore
+                different
+                algorithms may need different reward functions.
+                So we have tuned reward functions to induce a desirable gait for <b
+                  style="color: rgb(1, 132, 234);">FastTD3</b> -- with stronger
+                penalty terms and pose constraint.
+              </p>
+              <div class="columns is-centered">
+                <div class="column">
+                  <video poster="" autoplay controls muted loop playsinline width="100%">
+                    <source src="./static/videos/G1FlatPPOwithPPOReward.mp4" type="video/mp4">
+                  </video>
+                  <p class="has-text-centered"><b>PPO</b> with <b>PPO</b> reward</p>
+                </div>
+                <div class="column">
+                  <video poster="" autoplay controls muted loop playsinline width="100%">
+                    <source src="./static/videos/G1FlatPPOTunedReward.mp4" type="video/mp4">
+                  </video>
+                  <p class="has-text-centered"><b style="color: rgb(1, 132, 234);">FastTD3</b> with <b>PPO</b> reward
+                  </p>
+                </div>
+                <div class="column">
+                  <video poster="" autoplay controls muted loop playsinline width="100%">
+                    <source src="./static/videos/G1FlatOurTunedReward.mp4" type="video/mp4">
+                  </video>
+                  <p class="has-text-centered"><b style="color: rgb(1, 132, 234);">FastTD3</b> with <b
+                      style="color: rgb(1, 132, 234);">FastTD3</b> reward</p>
+                </div>
+              </div>
+              <p>
+                As shown in the video, with this tuned reward, we were able to train a
+                nice-looking gait with <b style="color: rgb(1, 132, 234);">FastTD3</b>, even though resulting episode
+                returns are the same for both policies.
+                This observation suggests that typical metric the research community uses -- episode return -- may not
+                fully reflect the usefulness of each RL algorithm.
+                Therefore, we encourage users to reconsider the use of robotic simulation as a <i>benchmark</i> for
+                comparing different classes of RL algorithms without evaluating the quality of the learned gaits, since
+                each RL algorithm may require different reward functions, especially for tasks with heavily hand-tuned
+                rewards.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- Get Started. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h3 class="title is-4">Get Started with FastTD3 Codebase</h3>
+            <div class="content has-text-justified">
+              <p>
+                We provide an easy-to-use implementation of <b style="color: rgb(1, 132, 234);">FastTD3</b> that
+                supports various user-friendly
+                features to help you get started with RL research in robotics.
+                Please check out the <a href="https://github.com/younggyoseo/FastTD3">GitHub repository</a> for more
+                details.
+              </p>
+            </div>
+          </div>
+        </div>
+        <hr>
+
+      </div>
+      <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@article{seo2025fasttd3,
+  author    = {Seo, Younggyo and Sferrazza, Carmelo and Geng, Haoran and Nauman, Michal and Yin, Zhao-Heng and Abbeel, Pieter},
+  title     = {FastTD3: Simple, Fast, and Capable Reinforcement Learning for Humanoid Control},
+  journal   = {arXiv:2505.22642}
+  year      = {2025},
+}</code></pre>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column">
+            <div class="content has-text-centered">
+              <p>
+                Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> made
+                by
+                the amazing <a href="https://keunhong.com/">Keunhong Park</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+
+
+</body>
+
+</html>

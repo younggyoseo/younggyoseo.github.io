@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQNMP9HZQG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-FQNMP9HZQG');
+  </script>
+  <meta charset="utf-8">
+  <meta name="description" content="Continuous Control with Coarse-to-fine Reinforcement Learning.">
+  <meta name="keywords" content="CQN">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Continuous Control with Coarse-to-fine Reinforcement Learning</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Continuous Control with<br>Coarse-to-fine Reinforcement Learning
+            </h1>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a target="_blank" href="https://younggyo.me/">Younggyo Seo</a>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://github.com/JafarAbdi/">Jafar Uruç</a>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://stepjam.github.io/">Stephen James</a>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Dyson Robot Learning Lab</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="./static/paper/cqn_paper.pdf"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <!-- Arxiv Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://arxiv.org/abs/2407.07787"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file"></i>
+                    </span>
+                    <span>ArXiv</span>
+                  </a>
+                </span>
+
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://youtu.be/6Y5D6gNdWRQ"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span>
+
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/younggyoseo/CQN"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <section class="hero is-light">
+      <br>
+      <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column" style="padding: 0 20px;">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Despite recent advances in improving the sample-efficiency of reinforcement learning (RL) algorithms,
+                designing an RL algorithm that can be practically deployed in real-world environments remains a
+                challenge.
+                In this paper, we present Coarse-to-fine Reinforcement Learning (CRL), a framework that trains RL agents
+                to <i>zoom-into</i> a continuous action space in a <i>coarse-to-fine</i> manner, enabling the use of
+                stable, sample-efficient value-based RL algorithms for fine-grained continuous control tasks.
+                Our key idea is to train agents that output actions by iterating the procedure of (i) discretizing the
+                continuous action space into multiple intervals and (ii) selecting the interval with the highest Q-value
+                to further discretize at the next level.
+                We then introduce a concrete, value-based algorithm within the CRL framework called Coarse-to-fine
+                Q-Network (CQN).
+              </p>
+              <p>
+                Our experiments demonstrate that CQN significantly outperforms RL and behavior cloning baselines on 20
+                sparsely-rewarded RLBench manipulation tasks with a modest number of environment interactions and expert
+                demonstrations.
+                We also show that CQN robustly learns to solve real-world manipulation tasks within a few minutes of
+                online training.
+              </p><br>
+            </div>
+          </div>
+        </div>
+    </section>
+    <!--/ Abstract. -->
+
+    <section class="section">
+      <div class="container is-max-desktop">
+
+        <!-- Method. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h2 class="title is-3">Coarse-to-fine Reinforcement Learning</h2>
+            <div class="content has-text-justified">
+              <p>
+                We present Coarse-to-fine Reinforcement Learning (CRL), a new RL framework that enables the use of
+                value-based RL algorithms for fine-grained
+                continuous control. Our key idea is to train RL agents to <i>zoom-into</i> the continuous action space
+                in a <i>coarse-to-fine</i>
+                manner by repeating the procedure of (i) discretizing the continuous action space into multiple
+                intervals and (ii) selecting the interval with the highest Q-value to further discretize at the next
+                level.
+              </p>
+            </div>
+            <h3 class="title is-4">Algorithm: Coarse-to-fine Q-Network</h3>
+            <div class="content has-text-justified">
+              <p>
+                Within the CRL framework, we introduce concrete, value-based RL algorithm, namely Coarse-to-fine
+                Q-Network (CQN), that implements a coarse-to-fine critic architecture to take input features along
+                with one-hot level indices and
+                actions from the previous level, and then outputs Q-values for different action
+                dimensions. This design enables the critic to know the current level and which part of the continuous
+                action space to zoom-into.
+              </p>
+              <img src="./static/images/overview.png" class="interpolation-image"
+                alt="Interpolate start reference image." />
+            </div>
+
+            <!-- Example-Discretization. -->
+            <h3 class="title is-4">Examples: Coarse-to-fine action discretization</h3>
+            <div class="content has-text-justified">
+              <p>
+                With a pre-defined number of levels (L) and intervals (B), e.g., L = 3 and B = 3 in
+                this example, we apply discretization to the continuous action space L times with different
+                precisions.
+                We then design our RL agents to learn a critic network with only a few actions at each level,
+                e.g., 3 actions in this example, conditioned on previous level's actions.
+                This enables us to learn discrete policies that can output high-precision actions while avoiding the
+                difficulty of learning the critic network with a large number of discrete actions.
+              </p>
+            </div>
+            <div class="content has-text-centered">
+              <video id="replay-video" autoplay muted loop preload playsinline width="75%">
+                <source src="./static/videos/open_drawer.mp4" type="video/mp4">
+              </video>
+              <video id="replay-video" autoplay muted loop preload playsinline width="75%">
+                <source src="./static/videos/take_plate_off_colored_dish_rack.mp4" type="video/mp4">
+              </video>
+              <video id="replay-video" autoplay muted loop preload playsinline width="75%">
+                <source src="./static/videos/sweep_to_dustpan.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!--/ Example-Discretization. -->
+
+          </div>
+        </div>
+        <!--/ Method. -->
+
+        <!-- Results. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h2 class="title is-3">Results</h2>
+
+            <!-- Real-world RL. -->
+            <h3 class="title is-4">Real-world RL training videos</h3>
+            <div class="content has-text-justified">
+              <p>
+                CQN efficiently learns to solve target tasks within 10 minutes of online training. These results are
+                without
+                pre-training, motion planning, keypoint extraction, camera calibration, depth, and hand-designed
+                rewards.
+              </p>
+            </div>
+            <div class="content has-text-centered">
+              <p>Open Drawer and Put Teddy in Drawer</p>
+              <video id="replay-video" controls muted playsinline width="75%">
+                <source src="./static/videos/teddy_rwrl.mp4" type="video/mp4">
+              </video>
+              <p><br>Click Button</p>
+              <video id="replay-video" controls muted playsinline width="75%">
+                <source src="./static/videos/button_rwrl.mp4" type="video/mp4">
+              </video>
+              <p><br>Take Lid Off Saucepan</p>
+              <video id="replay-video" controls muted playsinline width="75%">
+                <source src="./static/videos/saucepan_rwrl.mp4" type="video/mp4">
+              </video>
+              <p><br>Flip Cup</p>
+              <video id="replay-video" controls muted playsinline width="75%">
+                <source src="./static/videos/cup_rwrl.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!--/ Real-world RL. -->
+
+          </div>
+        </div>
+        <!--/ Results. -->
+
+      </div>
+      </div>
+      <!--/ Results. -->
+
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column">
+            <div class="content has-text-centered">
+              <p>
+                Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> made
+                by
+                the amazing <a href="https://keunhong.com/">Keunhong Park</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+</body>
+
+</html>
